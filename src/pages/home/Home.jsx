@@ -1,25 +1,12 @@
 import React from 'react';
 import './Home.css'
 import { Link } from 'react-router-dom';
+import NavBar from "../../components/navbar/NavBar.jsx";
 
 function Home() {
     return (
         <>
-            <header>
-                <nav>
-                    <ul>
-                        <li>
-                            <button></button>
-                        </li>
-                        <li>
-                            <button></button>
-                        </li>
-                        <li>
-                            <button></button>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
+            <NavBar />
             <main>
 
             </main>
