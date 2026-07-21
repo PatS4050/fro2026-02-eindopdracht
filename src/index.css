@@ -74,8 +74,13 @@ main {
   background-color: var(--white10);
 }
 ul {
+  border: 1px solid greenyellow;
+  padding: 8px 20px;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  gap: 50px;
 }
 
 button {
@@ -84,7 +89,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  border-radius: 40553800px;
+  border-radius: 40px;
   border: 1.2px solid #FFFFFF33;
   background: #FFFFFF1A;
 }
@@ -94,11 +99,6 @@ button {
 
 nav {
   border: 2px dashed purple;
-  padding: 8px 20px;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 50px;
   background-color: var(--white10);
 }
 /*////////////////////////
