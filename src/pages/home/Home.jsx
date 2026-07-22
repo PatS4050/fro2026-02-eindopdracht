@@ -6,6 +6,9 @@ import Synopsis from "../../components/synopsis/Synopsis.jsx";
 import Forecast from "../../components/forecast/Forecast.jsx";
 
 function Home() {
+
+
+
     return (
         <>
             <NavBar />

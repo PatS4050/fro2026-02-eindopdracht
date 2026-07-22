@@ -1,12 +1,13 @@
 import React from 'react';
 import './Forecast.css'
+import iconForecast from "../../assets/navigation/IconForecast.svg"
 import { Link } from 'react-router-dom';
 
 function Forecast() {
     return (
         <div className="box-m">
             <span className="row-start">
-                <p>image icon</p>
+                <img src={iconForecast} alt="icon of a weather prediction"/>
                  <h3>HOURLY FORECAST</h3>
             </span>
             <ul>

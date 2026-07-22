@@ -40,7 +40,8 @@ ol, ul {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  color: var(--white80);
+  /*color: var(--white80);*/
+  color: white;
 }
 /*////////////////////////
     2. Typography
@@ -54,6 +55,12 @@ h3 {
   font-size: 12px;
   text-align: center;
   font-weight: 400;
+}
+h4 {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 400;
+  color: var(--white80);
 }
 h6 {
   font-size: 10px;
@@ -73,7 +80,7 @@ h6 {
   }
 
 main {
-  border: 2px solid red;
+  /*border: 2px solid red;*/
   display: flex;
   padding: 24px;
   flex-direction: column;
@@ -107,14 +114,14 @@ button {
 ////////////////////////*/
 
 nav {
-  border: 2px dashed purple;
-  background-color: var(--white10);
+  /*border: 2px dashed purple;*/
+  /*background-color: var(--white10);*/
 }
 /*////////////////////////
     3.3    Base content
 ////////////////////////*/
 .basis {
-  border: 1px solid cadetblue;
+  /*border: 1px solid cadetblue;*/
   padding: 8px 20px;
   display: flex;
   flex-direction: column;
@@ -152,4 +159,15 @@ nav {
   flex-shrink: 0;
   flex-grow: 1;
   width: 100%;
+  gap: 12px;
+}
+.row-center {
+  /*border: 2px solid purple;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 100%;
+  gap: 12px;
 }
