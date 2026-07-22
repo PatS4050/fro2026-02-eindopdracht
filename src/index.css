@@ -21,6 +21,8 @@ Table of Contents:
 /*////////////////////////
     1. Global Styles
 ////////////////////////*/
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet");
+
 * {
   margin: 0;
   padding: 0;
@@ -34,6 +36,12 @@ ol, ul {
   --white10: #FFFFFF1A;
   --white20: #FFFFFF33;
   --white80: #FFFFFFCC;
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--white80);
+}
 /*////////////////////////
     2. Typography
 ////////////////////////*/
