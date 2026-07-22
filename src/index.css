@@ -45,13 +45,17 @@ ol, ul {
 /*////////////////////////
     2. Typography
 ////////////////////////*/
-H1 {
+h1 {
   font-size: 36px;
   text-align: center;
   font-weight: 1000;
 }
-
-H6 {
+h3 {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 400;
+}
+h6 {
   font-size: 10px;
   font-weight: normal;
 }
@@ -63,9 +67,7 @@ H6 {
 /*////////////////////////
     3.1   Base Section
 ////////////////////////*/
-  header {
-    background-color:#40547C;
-  }
+
   body {
     background-color:#40547C;
   }
@@ -79,10 +81,9 @@ main {
   align-items: center;
   gap: 24px;
   align-self: stretch;
-  background-color: var(--white10);
 }
 ul {
-  border: 1px solid greenyellow;
+  /*border: 1px solid greenyellow;*/
   padding: 8px 20px;
   display: flex;
   flex-direction: row;
@@ -112,6 +113,16 @@ nav {
 /*////////////////////////
     3.3    Base content
 ////////////////////////*/
+.basis {
+  border: 1px solid cadetblue;
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
 .box-s {
   display: inline-flex;
   flex-direction: column;
@@ -122,11 +133,23 @@ nav {
   gap: 36px;
 }
 .box-m {
+  border: 1.8px var(--white20) solid;
+  border-radius: 16px;
+  background-color: var(--white10);
+  padding: 16px;
   display: inline-flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 500px;
   box-shadow: grey;
   position: relative;
   gap: 36px;
+}
+.row-start {
+  /*border: 2px solid purple;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 100%;
 }
