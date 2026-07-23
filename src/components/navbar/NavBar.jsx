@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import './NavBar.css'
 import Position from "../position/Position.jsx";
+import locationImage from "../../assets/navigation/navIconLoc.svg";
 
-function NavBar() {
+function NavBar({location}) {
     return (
         <>
             <nav>
@@ -14,7 +15,8 @@ function NavBar() {
                     </li>
                     <li>
                        <span>
-                            <Position />
+                           <img src={locationImage} alt='location pointer' />
+                           <p>{location?.latitude.toFixed(2)} - {location?.longitude.toFixed(2)}</p>
                        </span>
                     </li>
                     <li>
