@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import './Home.css'
-import { Link } from 'react-router-dom';
 import NavBar from "../../components/navbar/NavBar.jsx";
 import Synopsis from "../../components/synopsis/Synopsis.jsx";
 import Forecast from "../../components/forecast/Forecast.jsx";
 
 function Home() {
-
     /////////// Huidige positie bepalen //////////
     const [location, setLocation] = useState({ latitude: 78.22334, longitude: 16.64689}); // Longyearbyen
     const [city, setCity] = useState("");
@@ -19,8 +17,6 @@ function Home() {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                 });
-                console.log(location)
-
             },
             (error) => {
                 setError("Locatie niet gevonden, standaardlocatie wordt gebruikt.");
@@ -29,9 +25,6 @@ function Home() {
         )
     }, []);
     //////////////////////////////////////////////////
-
-    console.log(location)
-
     return (
         <>
             <NavBar location={location}/>

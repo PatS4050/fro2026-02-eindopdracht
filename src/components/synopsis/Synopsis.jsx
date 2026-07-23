@@ -2,19 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import './Synopsis.css'
 import windRose from '../../assets/navigation/windroos/windRoosSimple.svg'
-import {Link} from 'react-router-dom';
-
-// key: 64f39b1455a14828d42e76afd154b66f
-// key: 97b027d3a37bcaea6dcba72656f5f9a1
-
 
 function Synopsis({location}) {
-    // const weatherLink = 'https://api.openweathermap.org/data/2.5/weather?lat=${location?.latitude.toFixed(5)}&lon=16.64689&units=metric&appid=64f39b1455a14828d42e76afd154b66f';
-
-    // const weatherLink = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude.toFixed(5)}&lon=${location.longitude.toFixed(5)}&units=metric&appid=64f39b1455a14828d42e76afd154b66f`;
-    const weatherLink = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=64f39b1455a14828d42e76afd154b66f`;
-
-    // const weatherLink = 'https://api.openweathermap.org/data/4.0/onecall/current?lat=78.22334&lon=16.64689&appid=97b027d3a37bcaea6dcba72656f5f9a1';
+    const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
+    const weatherLink = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}`;
     const [weather, setWeather] = useState('');
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
@@ -27,23 +18,6 @@ function Synopsis({location}) {
             const response = await axios.get(weatherLink, {});
             setWeather(response.data);
             console.log(response.data);
-
-            // const response = await axios.get(
-            //     `https://api.openweathermap.org/data/2.5/weather?`,
-            //     {
-            //         params: {
-            //             latitude: 78.22334,
-            //             longitude: 16.64689,
-            //             // lat: location?.latitude,
-            //             // lon: location?.longitude,
-            //             units: "metric",
-            //             appid: "J64f39b1455a14828d42e76afd154b66f",
-            //         },
-            //         console.log(response.data)
-            //     }
-            // );
-            // setWeather(response.data);
-
         } catch (e) {
             toggleError(true)
             console.error(e);
