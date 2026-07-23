@@ -4,6 +4,8 @@ import axios from "axios";
 import './NavBar.css'
 import Position from "../position/Position.jsx";
 import locationImage from "../../assets/navigation/navIconLoc.svg";
+import menuIcon from"../../assets/navigation/navIcon.svg"
+import inlogIcon from"../../assets/navigation/iconPerson.svg"
 
 function NavBar({location}) {
     return (
@@ -11,7 +13,7 @@ function NavBar({location}) {
             <nav>
                 <ul className='navbar'>
                     <li>
-                        <button></button>
+                        <button><img src={menuIcon} alt='icon menu' /></button>
                     </li>
                     <li>
                        <span>
@@ -20,7 +22,8 @@ function NavBar({location}) {
                        </span>
                     </li>
                     <li>
-                        <button></button>
+                        <button><img src={inlogIcon} alt='icon person' /></button>
+
                     </li>
                 </ul>
             </nav>
