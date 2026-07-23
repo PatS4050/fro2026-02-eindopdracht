@@ -5,10 +5,16 @@ import windRose from '../../assets/navigation/windroos/windRoosSimple.svg'
 import {Link} from 'react-router-dom';
 
 // key: 64f39b1455a14828d42e76afd154b66f
+// key: 97b027d3a37bcaea6dcba72656f5f9a1
 
 
 function Synopsis({location}) {
-    const weatherLink = 'https://api.openweathermap.org/data/2.5/weather?lat=78.22334&lon=16.64689&units=metric&appid=64f39b1455a14828d42e76afd154b66f';
+    // const weatherLink = 'https://api.openweathermap.org/data/2.5/weather?lat=${location?.latitude.toFixed(5)}&lon=16.64689&units=metric&appid=64f39b1455a14828d42e76afd154b66f';
+
+    // const weatherLink = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude.toFixed(5)}&lon=${location.longitude.toFixed(5)}&units=metric&appid=64f39b1455a14828d42e76afd154b66f`;
+    const weatherLink = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=64f39b1455a14828d42e76afd154b66f`;
+
+    // const weatherLink = 'https://api.openweathermap.org/data/4.0/onecall/current?lat=78.22334&lon=16.64689&appid=97b027d3a37bcaea6dcba72656f5f9a1';
     const [weather, setWeather] = useState('');
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
@@ -17,6 +23,7 @@ function Synopsis({location}) {
         toggleLoading(true);
         toggleError(false);
         try {
+
             const response = await axios.get(weatherLink, {});
             setWeather(response.data);
             console.log(response.data);
@@ -36,6 +43,7 @@ function Synopsis({location}) {
             //     }
             // );
             // setWeather(response.data);
+
         } catch (e) {
             toggleError(true)
             console.error(e);
@@ -45,7 +53,7 @@ function Synopsis({location}) {
     }
 
     useEffect(() => {
-        void fetchCurrent()
+        void fetchCurrent();
     }, [location]);
 
     return (
@@ -63,7 +71,7 @@ function Synopsis({location}) {
                 alt='windroos'
                 style={{
                     transform: `rotate(${weather.wind?.deg || 0}deg)`,
-                    transition: "transform 0.3s ease"
+                    transition: "transform 0.6s ease"
                 }}
             />
             <ul className="basis">

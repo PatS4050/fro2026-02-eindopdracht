@@ -8,10 +8,7 @@ import Forecast from "../../components/forecast/Forecast.jsx";
 function Home() {
 
     /////////// Huidige positie bepalen //////////
-    const [location, setLocation] = useState({
-        latitude: 78.22334,   // Longyearbyen
-        longitude: 16.64689,
-    });
+    const [location, setLocation] = useState({ latitude: 78.22334, longitude: 16.64689}); // Longyearbyen
     const [city, setCity] = useState("");
     const [error, setError] = useState("");
 
@@ -22,6 +19,8 @@ function Home() {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                 });
+                console.log(location)
+
             },
             (error) => {
                 setError("Locatie niet gevonden, standaardlocatie wordt gebruikt.");
@@ -31,13 +30,14 @@ function Home() {
     }, []);
     //////////////////////////////////////////////////
 
+    console.log(location)
 
     return (
         <>
             <NavBar location={location}/>
             <main>
                 <Synopsis location={location}/>
-                <Forecast/>
+                <Forecast location={location}/>
             </main>
         </>
 
