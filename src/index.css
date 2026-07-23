@@ -89,15 +89,6 @@ main {
   gap: 24px;
   align-self: stretch;
 }
-ul {
-  /*border: 1px solid greenyellow;*/
-  padding: 8px 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 50px;
-}
 
 button {
   display: flex;
@@ -116,6 +107,15 @@ button {
 nav {
   /*border: 2px dashed purple;*/
   /*background-color: var(--white10);*/
+}
+.navbar {
+  /*border: 1px solid greenyellow;*/
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
 }
 /*////////////////////////
     3.3    Base content
@@ -150,6 +150,15 @@ nav {
   box-shadow: grey;
   position: relative;
   gap: 36px;
+}
+.box-xs {
+  /*border: 1px red solid;*/
+  padding: 2px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 48px;
+  gap: 6px;
 }
 .row-start {
   /*border: 2px solid purple;*/

@@ -9,7 +9,7 @@ function NavBar({location}) {
     return (
         <>
             <nav>
-                <ul>
+                <ul className='navbar'>
                     <li>
                         <button></button>
                     </li>
