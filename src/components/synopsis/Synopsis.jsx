@@ -34,7 +34,7 @@ function Synopsis({location}) {
         <div className="basis">
             <ul className="basis">
                 <li className="row-center"><h4>TEMP</h4><h4>PRESSURE</h4></li>
-                <li><p>{weather.main?.temp} ºC | {weather.main?.pressure} hPa</p></li>
+                <li><p>{weather.main?.temp.toFixed(0)} ºC | {weather.main?.pressure} hPa</p></li>
             </ul>
             <img
                 src={`https://openweathermap.org/img/wn/${weather.weather?.[0]?.icon}@2x.png`}

@@ -7,9 +7,7 @@ import windRose from "../../assets/navigation/windroos/windRoosVol.svg";
 
 function Forecast({ location }) {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
-    // const forecastLink = `https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}`;
-    const forecastLink = `https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat=78.22334&lon=16.64689&units=metric&appid=${apiKey}`;
-    // const forecastLink = `https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}`;
+    const forecastLink = `https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}`;
 
 
     const [forecastH, setForecastH] = useState(null);
@@ -47,7 +45,7 @@ function Forecast({ location }) {
                         src={`https://openweathermap.org/img/wn/${forecastH?.data[1]?.weather[0]?.icon}@2x.png`}
                         alt={forecastH?.data[1]?.weather[0]?.description}
                     />
-                    <h3>{forecastH?.data[1]?.temp}º</h3>
+                    <h3>{forecastH?.data[1]?.temp.toFixed(0)}º</h3>
                     <img
                         src={windRose}
                         alt='windroos'
@@ -65,7 +63,7 @@ function Forecast({ location }) {
                         src={`https://openweathermap.org/img/wn/${forecastH?.data[2]?.weather[0]?.icon}@2x.png`}
                         alt={forecastH?.data[2]?.weather[0]?.description}
                     />
-                    <h3>{forecastH?.data[2]?.temp}º</h3>
+                    <h3>{forecastH?.data[2]?.temp.toFixed(0)}º</h3>
                     <img
                         src={windRose}
                         alt='windroos'
@@ -82,7 +80,7 @@ function Forecast({ location }) {
                     src={`https://openweathermap.org/img/wn/${forecastH?.data[3]?.weather[0]?.icon}@2x.png`}
                     alt={forecastH?.data[3]?.weather[0]?.description}
                 />
-                <h3>{forecastH?.data[3]?.temp}º</h3>
+                <h3>{forecastH?.data[3]?.temp.toFixed(0)}º</h3>
                 <img
                     src={windRose}
                     alt='windroos'
@@ -99,7 +97,7 @@ function Forecast({ location }) {
                     src={`https://openweathermap.org/img/wn/${forecastH?.data[4]?.weather[0]?.icon}@2x.png`}
                     alt={forecastH?.data[4]?.weather[0]?.description}
                 />
-                <h3>{forecastH?.data[4]?.temp}º</h3>
+                <h3>{forecastH?.data[4]?.temp.toFixed(0)}º</h3>
                 <img
                     src={windRose}
                     alt='windroos'
