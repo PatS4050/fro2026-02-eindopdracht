@@ -30,12 +30,12 @@ function ForecastH1({location}) {
 
     return (
         <div>
-            <span className="row-start">
-                <button className='box-xs' type="button" onClick={fetchfForecastH1}>Hourly</button>
-                <button className='box-xs' type="button" onClick={fetchfForecastH1}>Hourly</button>
-                <button className='box-xs'type="button" onClick={fetchfForecastH1}>Hourly</button>
+            <span className="predictions">
+                <button className='button-predictions' type="button" onClick={fetchfForecastH1}>per uur</button>
+                <button className='button-predictions' type="button" onClick={fetchfForecastH1}>elke 3 uur</button>
+                <button className='button-predictions' type="button" onClick={fetchfForecastH1}>elke 12 uur</button>
             </span>
-            <ul className='box-s'>
+            <ul className='box-list'>
                 {forecastH1?.data?.map((prediction, index) => (
                     <li className='box-rxs' key={prediction.dt}>
                         <h3>+{index}H</h3>
@@ -52,7 +52,7 @@ function ForecastH1({location}) {
                                 transition: "transform 0.2s ease"
                             }}
                         />
-                        <h3>{prediction?.wind_speed}</h3>
+                        <h3>{prediction?.wind_speed} m/s</h3>
 
                     </li>
                 ))}

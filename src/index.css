@@ -203,12 +203,14 @@ nav {
   border: 1.8px var(--white20) solid;
   border-radius: 16px;
   background-color: var(--white10);
-  padding: 2px;
-  display: inline-flex;
+  padding: 9px;
+  display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  width: 48px;
-  gap: 6px;
+  justify-content: space-around;
+  justify-items: center;
+  min-height: 48px;
+  height:18px;
+  gap: 12px;
 }
 .row-start {
   /*border: 2px solid purple;*/
@@ -229,4 +231,50 @@ nav {
   flex-grow: 1;
   width: 100%;
   gap: 12px;
+}
+/*////////////////////////
+    4.6    Predictions
+////////////////////////*/
+
+.box-list {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-basis: 120px;
+  width: 240px;
+  box-shadow: grey;
+  position: relative;
+  gap: 6px;
+}
+
+.box-rxs h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+.box-rxs img {
+  width: 32px;
+  height: 32px;
+}
+.predictions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+  margin-bottom: 9px;
+  gap: 6px;
+}
+.button-predictions{
+  border-radius: 16px;
+  border: 1.2px solid #FFFFFF33;
+  background: #FFFFFF1A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 90px;
+  height: 72px;
 }
