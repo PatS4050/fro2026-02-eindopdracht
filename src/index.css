@@ -198,6 +198,18 @@ nav {
   width: 48px;
   gap: 6px;
 }
+.box-rxs {
+  /*border: 1px red solid;*/
+  border: 1.8px var(--white20) solid;
+  border-radius: 16px;
+  background-color: var(--white10);
+  padding: 2px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 48px;
+  gap: 6px;
+}
 .row-start {
   /*border: 2px solid purple;*/
   display: flex;

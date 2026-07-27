@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './Forecast.css'
 import iconForecast from "../../assets/navigation/IconForecast.svg"
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import windRose from "../../assets/navigation/windroos/windRoosVol.svg";
 
-function ForecastH1({ location }) {
+function ForecastH1({location}) {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
     const forecastLink = `https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}`;
 
@@ -29,31 +29,33 @@ function ForecastH1({ location }) {
     }
 
     return (
-        <div className="box-m">
+        <div>
             <span className="row-start">
-            <button type="button" onClick={fetchfForecastH1}>Hourly</button>
+                <button className='box-xs' type="button" onClick={fetchfForecastH1}>Hourly</button>
+                <button className='box-xs' type="button" onClick={fetchfForecastH1}>Hourly</button>
+                <button className='box-xs'type="button" onClick={fetchfForecastH1}>Hourly</button>
             </span>
-            <ul>
-                {forecastH1?.hourly?.map((prediction, index) => (
-                <li className='box-xs' key={prediction.dt}>
-                    <h3>+{index}H</h3>
-                    <img
-                        src={`https://openweathermap.org/img/wn/${prediction?.weather[0]?.icon}@2x.png`}
-                        alt={prediction?.weather[0]?.description}
-                    />
-                    <h3>{prediction?.temp.toFixed(0)}º</h3>
-                    <img
-                        src={windRose}
-                        alt='windroos'
-                        style={{
-                            transform: `rotate(${prediction?.wind_deg || 0}deg)`,
-                            transition: "transform 0.2s ease"
-                        }}
-                    />
-                    <h3>{prediction?.wind_speed}</h3>
+            <ul className='box-s'>
+                {forecastH1?.data?.map((prediction, index) => (
+                    <li className='box-rxs' key={prediction.dt}>
+                        <h3>+{index}H</h3>
+                        <img
+                            src={`https://openweathermap.org/img/wn/${prediction?.weather[0]?.icon}@2x.png`}
+                            alt={prediction?.weather[0]?.description}
+                        />
+                        <h3>{prediction?.temp.toFixed(0)}º</h3>
+                        <img
+                            src={windRose}
+                            alt='windroos'
+                            style={{
+                                transform: `rotate(${prediction?.wind_deg || 0}deg)`,
+                                transition: "transform 0.2s ease"
+                            }}
+                        />
+                        <h3>{prediction?.wind_speed}</h3>
 
-                </li>
-                    ))}
+                    </li>
+                ))}
             </ul>
         </div>
     );
