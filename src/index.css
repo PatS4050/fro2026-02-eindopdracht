@@ -119,7 +119,7 @@ nav {
   align-items: center;
   gap: 50px;
 }
-button {
+.navbar button {
   display: flex;
   padding: 8px;
   flex-direction: column;
@@ -129,6 +129,31 @@ button {
   border-radius: 40px;
   border: 1.2px solid #FFFFFF33;
   background: #FFFFFF1A;
+}
+.navbar li {
+  position: relative;
+}
+.dropMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  background: var(--white10);
+  border: 1px solid var(--white20);
+  border-radius: 6px;
+}
+
+.dropMenu a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.dropMenu a:hover {
+  background: var(--white10);
+  color: var(--white80)
 }
 /*////////////////////////
     3.3    Base content

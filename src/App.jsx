@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import { Routes, Route } from 'react-router-dom';
+import ReactDOM from "react-dom/client";
 import './App.css'
 import Home from "./pages/home/Home.jsx";
 import WeatherChoice from "./pages/weatherchoice/WeatherChoice.jsx";

@@ -5,6 +5,7 @@ function WheatherChoice() {
     return (
         <>
             <main>
+                <h2>Weer keuze</h2>
 
             </main>
 

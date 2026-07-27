@@ -5,6 +5,7 @@ function Predictions() {
     return (
         <>
             <main>
+                <h2>weersvoorspelling</h2>
 
             </main>
         </>

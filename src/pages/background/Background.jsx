@@ -6,7 +6,7 @@ function Background() {
     return (
         <>
             <main>
-
+                <h2>Achtergrond wijzigen</h2>
             </main>
         </>
     );

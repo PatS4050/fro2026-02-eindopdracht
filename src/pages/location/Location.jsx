@@ -5,6 +5,7 @@ function Location() {
     return (
         <>
             <main>
+                <h2>Locaties zoeken</h2>
 
             </main>
 
