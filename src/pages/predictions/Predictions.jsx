@@ -11,10 +11,7 @@ function Predictions({location}) {
             location={location}
         />
             <main>
-                <h2>weersvoorspelling</h2>
-                <ForecastH
-                    location={location}
-                />
+                <ForecastH location={location} />
             </main>
         </>
     );

@@ -6,10 +6,10 @@ import windRose from "../../assets/navigation/windroos/windRoosVol.svg";
 function ForecastH1({location}) {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
     const forecastLink = `https://api.openweathermap.org/data/4.0/onecall/timeline/1h?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}`;
-
-
-    const [forecastH1, setForecastH1] = useState(null);
+    const [forecastH1, setForecastH1] = useState([]);
     const [period, setPeriod] = useState(1)
+    const [nextLink, setNextLink] = useState(null);
+    const [nextForecasts, setNextForecasts] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
@@ -17,7 +17,13 @@ function ForecastH1({location}) {
         toggleLoading(true);
         try {
             const response = await axios.get(forecastLink, {})
-            setForecastH1(response.data);
+            // setForecastH1(response.data);
+            // console.log(response.data);
+            setForecastH1(prev => [
+                ...prev,
+                ...response.data.data
+                ]);
+            setNextLink(response.data.next);
             console.log(response.data);
         } catch (e) {
             toggleError(true)
@@ -26,18 +32,35 @@ function ForecastH1({location}) {
             toggleLoading(false);
         }
     }
+    // async function get12Hours() {
+    //     // toggleLoading(true);
+    //     setPeriod(12);
+    //
+    //     if (nextLink) {
+    //         await fetchForecastH1(nextLink);
+    //     }
+    //
+    // }
+
     useEffect(() => {
         fetchfForecastH1();
     }, [location]);
+
     return (
+        <>
         <div>
+            <h2>weersvoorspelling</h2>
+            <h3>{location.latitude.toFixed(2)} - {location.longitude.toFixed(2)}</h3>
+        </div>
+        <div>
+
             <span className="predictions">
                 <button className='button-predictions' type="button" onClick={() => setPeriod(1)}>per uur</button>
                 <button className='button-predictions' type="button" onClick={() => setPeriod(3)}>elke 3 uur</button>
                 <button className='button-predictions' type="button" onClick={() => setPeriod(12)}>elke 12 uur</button>
             </span>
             <ul className='box-list'>
-                {forecastH1?.data?.filter((_, index) => index % period === 0).slice(0,12).map((prediction, index) => (
+                {forecastH1?.filter((_, index) => index % period === 0).slice(0,7).map((prediction, index) => (
                     <li className='box-rxs' key={prediction.dt}>
                         <h3>+{index * period}H</h3>
                         <img
@@ -58,6 +81,7 @@ function ForecastH1({location}) {
                 ))}
             </ul>
         </div>
+        </>
     );
 }
 
