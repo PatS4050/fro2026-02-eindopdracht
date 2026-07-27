@@ -5,9 +5,8 @@ import Synopsis from "../../components/synopsis/Synopsis.jsx";
 import Forecast from "../../components/forecast/Forecast.jsx";
 import axios from "axios";
 
-function Home() {
+function Home({location}) {
     /////////// Huidige positie bepalen //////////
-    const [location, setLocation] = useState({ latitude: 78.22334, longitude: 16.64689}); // Longyearbyen
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
     const weatherLink = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=${apiKey}`;
     const [weather, setWeather] = useState(null);
@@ -15,21 +14,6 @@ function Home() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                setLocation({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                });
-            },
-            (error) => {
-                setError("Locatie niet gevonden, standaardlocatie wordt gebruikt.");
-                console.error(error);
-            }
-        )
-    }, []);
-    //////////////////////////////////////////////////
     async function fetchCurrent() {
         toggleLoading(true);
         toggleError(false);
