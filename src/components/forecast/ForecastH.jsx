@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import './Forecast.css'
+import './ForecastH.css'
 import windRose from "../../assets/navigation/windroos/windRoosVol.svg";
 
 function ForecastH1({location}) {
@@ -47,13 +47,8 @@ function ForecastH1({location}) {
     }, [location]);
 
     return (
-        <>
-        <div>
-            <h2>weersvoorspelling</h2>
-            <h3>{location.latitude.toFixed(2)} - {location.longitude.toFixed(2)}</h3>
-        </div>
-        <div>
 
+        <div>
             <span className="predictions">
                 <button className='button-predictions' type="button" onClick={() => setPeriod(1)}>per uur</button>
                 <button className='button-predictions' type="button" onClick={() => setPeriod(3)}>elke 3 uur</button>
@@ -81,7 +76,7 @@ function ForecastH1({location}) {
                 ))}
             </ul>
         </div>
-        </>
+
     );
 }
 
