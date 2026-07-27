@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './Forecast.css'
-import iconForecast from "../../assets/navigation/IconForecast.svg"
-import {Link} from 'react-router-dom';
 import windRose from "../../assets/navigation/windroos/windRoosVol.svg";
 
 function ForecastH1({location}) {
@@ -11,6 +9,7 @@ function ForecastH1({location}) {
 
 
     const [forecastH1, setForecastH1] = useState(null);
+    const [period, setPeriod] = useState(1)
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
@@ -27,18 +26,20 @@ function ForecastH1({location}) {
             toggleLoading(false);
         }
     }
-
+    useEffect(() => {
+        fetchfForecastH1();
+    }, [location]);
     return (
         <div>
             <span className="predictions">
-                <button className='button-predictions' type="button" onClick={fetchfForecastH1}>per uur</button>
-                <button className='button-predictions' type="button" onClick={fetchfForecastH1}>elke 3 uur</button>
-                <button className='button-predictions' type="button" onClick={fetchfForecastH1}>elke 12 uur</button>
+                <button className='button-predictions' type="button" onClick={() => setPeriod(1)}>per uur</button>
+                <button className='button-predictions' type="button" onClick={() => setPeriod(3)}>elke 3 uur</button>
+                <button className='button-predictions' type="button" onClick={() => setPeriod(12)}>elke 12 uur</button>
             </span>
             <ul className='box-list'>
-                {forecastH1?.data?.map((prediction, index) => (
+                {forecastH1?.data?.filter((_, index) => index % period === 0).slice(0,12).map((prediction, index) => (
                     <li className='box-rxs' key={prediction.dt}>
-                        <h3>+{index}H</h3>
+                        <h3>+{index * period}H</h3>
                         <img
                             src={`https://openweathermap.org/img/wn/${prediction?.weather[0]?.icon}@2x.png`}
                             alt={prediction?.weather[0]?.description}
@@ -53,7 +54,6 @@ function ForecastH1({location}) {
                             }}
                         />
                         <h3>{prediction?.wind_speed} m/s</h3>
-
                     </li>
                 ))}
             </ul>
