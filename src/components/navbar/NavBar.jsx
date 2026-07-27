@@ -7,7 +7,7 @@ import locationImage from "../../assets/navigation/navIconLoc.svg";
 import menuIcon from "../../assets/navigation/navIcon.svg"
 import inlogIcon from "../../assets/navigation/iconPerson.svg"
 
-function NavBar({location}) {
+function NavBar({location, weather}) {
     const [open, setOpen] = useState(false);
 
 
@@ -32,7 +32,8 @@ function NavBar({location}) {
                     <li>
                        <span>
                            <img src={locationImage} alt='location pointer'/>
-                           <p>{location?.latitude.toFixed(2)} - {location?.longitude.toFixed(2)}</p>
+                           {/*<p>{location?.latitude.toFixed(2)} - {location?.longitude.toFixed(2)}</p>*/}
+                           <p>{weather?.name}</p>
                        </span>
                     </li>
                     <li>
