@@ -9,22 +9,17 @@ import inlogIcon from "../../assets/navigation/iconPerson.svg"
 
 function NavBar({location, weather}) {
     const [open, setOpen] = useState(false);
-    console.log("NAVBAR LOCATION", location);
 
     return (
         <>
             <nav
-                onMouseEnter={() => {console.log("enter");
-                    setOpen(true)}}
-                onMouseLeave={() => {console.log("leave");
-                    setOpen(false)}}
+                onMouseEnter={() => {setOpen(true)}}
+                onMouseLeave={() => {setOpen(false)}}
             >
                 <ul className='navbar'>
                     <li
-                        onMouseEnter={() => {console.log("enter");
-                        setOpen(true)}}
-                        onMouseLeave={() => {console.log("leave");
-                        setOpen(false)}}
+                        onMouseEnter={() => {setOpen(true)}}
+                        onMouseLeave={() => {setOpen(false)}}
                     >
                         <button><img src={menuIcon} alt='icon menu'/></button>
                         {open && (
@@ -40,7 +35,7 @@ function NavBar({location, weather}) {
                        <span>
                            <img src={locationImage} alt='location pointer'/>
                            {/*<p>{location?.latitude.toFixed(2)} - {location?.longitude.toFixed(2)}</p>*/}
-                           <p>{weather?.name}</p>
+                           <p>{location?.name}</p>
                        </span>
                     </li>
                     <li>

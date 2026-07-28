@@ -14,8 +14,11 @@ import axios from "axios";
 
 
 function App() {
+    const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
+    const [location, setLocation] = useState({ latitude: 78.22334, longitude: 16.64689, name: "Longyearbyen"}); // Longyearbyen
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
 
-    const [location, setLocation] = useState({ latitude: 78.22334, longitude: 16.64689}); // Longyearbyen
     const changeLocation = (lat, lon, name) => {
         setLocation({
             latitude: lat,
@@ -24,19 +27,39 @@ function App() {
         })};
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                setLocation(prev =>({
-                    ...prev,
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                }));
-            },
-            (error) => {
-                setError("Locatie niet gevonden, standaardlocatie wordt gebruikt.");
-                console.error(error);
-            }
-        )
+        async function getCurrentLocation() {
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    try {
+                        const response = await axios.get(
+                            `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`
+                        );
+
+                        const city = response.data[0];
+
+                        setLocation({
+                            latitude: lat,
+                            longitude: lon,
+                            name: city.name,
+                        });
+
+                    } catch (error) {
+                        console.error(error);
+
+                        setLocation({
+                            latitude: lat,
+                            longitude: lon,
+                            name: "locatie onbekend",
+                        });
+                    }
+                },
+            );
+        }
+
+        getCurrentLocation();
     }, []);
 
 

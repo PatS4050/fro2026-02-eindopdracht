@@ -53,6 +53,7 @@ function Location({location, setLocation, changeLocation}) {
                             <button onClick={()=>setLocation({
                                 latitude: tomato.lat,
                                 longitude: tomato.lon,
+                                name: tomato.name,
                             })}>
                                 {tomato.name}
                         </button>

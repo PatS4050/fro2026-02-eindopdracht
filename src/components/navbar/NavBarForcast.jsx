@@ -23,7 +23,7 @@ function NavBarForcast({location, weather}) {
                         <h5>weersvoorspelling</h5>
                        <span>
                            <img src={locationImage} alt='location pointer'/>
-                           <p>{location?.latitude.toFixed(2)} - {location?.longitude.toFixed(2)}</p>
+                           <p>{location?.name}</p>
                            {/*<p>{weather?.name}</p>*/}
                        </span>
                     </li>
