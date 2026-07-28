@@ -2,11 +2,11 @@ import React, { useState} from 'react';
 import NavBarLocation from "../../components/navbar/NavBarLocation.jsx";
 import axios from "axios";
 
-function Location({location}) {
+function Location({location, setLocation, changeLocation}) {
 
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
     const [searchLocation, setSearchLocation] = useState("");
-    const [locationInfo, setLocationInfo] = useState({});
+    const [locationInfo, setLocationInfo] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
@@ -16,11 +16,12 @@ function Location({location}) {
         toggleLoading(true);
 
         try {
-            const response = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${searchLocation}&limit=1&appid=${apiKey}`);
-            const city = response.data;
+            const response = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${searchLocation}&limit=1&appid=${apiKey}`);
+            const city = response.data[0];
             console.log(city);
             // sla de informatie van de plaats op in de state
-            setLocationInfo(city);
+            setLocationInfo(response.data);
+            changeLocation(city.lat, city.lon, city.name);
             // maak het invoerveld weer leeg
             setSearchLocation('');
 
@@ -48,8 +49,13 @@ function Location({location}) {
                 <p>switch alle locatie en favorieten</p>
                 <ul className='box-list'>
                     {locationInfo.map((tomato) =>(
-                        <li className='box-rxs' key={'${tomato.longitude}'}>
-                            {tomato.name}
+                        <li className='box-rxs' key={tomato.lon}>
+                            <button onClick={()=>setLocation({
+                                latitude: tomato.lat,
+                                longitude: tomato.lon,
+                            })}>
+                                {tomato.name}
+                        </button>
                         </li>
                     ))}
                     <li className='box-rxs'>lijst locaties</li>

@@ -16,15 +16,21 @@ import axios from "axios";
 function App() {
 
     const [location, setLocation] = useState({ latitude: 78.22334, longitude: 16.64689}); // Longyearbyen
-
+    const changeLocation = (lat, lon, name) => {
+        setLocation({
+            latitude: lat,
+            longitude: lon,
+            name:name
+        })};
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                setLocation({
+                setLocation(prev =>({
+                    ...prev,
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
-                });
+                }));
             },
             (error) => {
                 setError("Locatie niet gevonden, standaardlocatie wordt gebruikt.");
@@ -45,6 +51,7 @@ function App() {
                     <Route path="/location" element={<Location
                         location={location}
                         setLocation={setLocation}
+                        changeLocation={changeLocation}
                     />} />
                     <Route path="/background" element={<Background />} />
                     <Route path="/predictions" element={<Predictions location={location}/>} />

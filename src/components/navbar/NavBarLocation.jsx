@@ -22,7 +22,7 @@ function NavBarLocation({location}) {
                         <h5>Locaties</h5>
                        <span>
                            <img src={locationImage} alt='location pointer'/>
-                           <p>{location?.latitude.toFixed(2)} - {location?.longitude.toFixed(2)}</p>
+                           <p>{location?.name}</p>
                        </span>
                     </li>
                 </ul>

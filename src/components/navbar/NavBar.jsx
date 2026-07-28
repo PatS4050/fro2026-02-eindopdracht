@@ -1,5 +1,5 @@
 import React from 'react';
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Link} from "react-router-dom";
 import './NavBar.css'
 import Position from "../position/Position.jsx";
@@ -9,15 +9,22 @@ import inlogIcon from "../../assets/navigation/iconPerson.svg"
 
 function NavBar({location, weather}) {
     const [open, setOpen] = useState(false);
-
+    console.log("NAVBAR LOCATION", location);
 
     return (
         <>
-            <nav>
+            <nav
+                onMouseEnter={() => {console.log("enter");
+                    setOpen(true)}}
+                onMouseLeave={() => {console.log("leave");
+                    setOpen(false)}}
+            >
                 <ul className='navbar'>
                     <li
-                        onMouseEnter={() => setOpen(true)}
-                        onMouseLeave={() => setOpen(false)}
+                        onMouseEnter={() => {console.log("enter");
+                        setOpen(true)}}
+                        onMouseLeave={() => {console.log("leave");
+                        setOpen(false)}}
                     >
                         <button><img src={menuIcon} alt='icon menu'/></button>
                         {open && (
