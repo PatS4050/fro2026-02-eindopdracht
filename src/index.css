@@ -60,7 +60,7 @@ h4 {
   font-size: 12px;
   text-align: center;
   font-weight: 400;
-  color: var(--white80);
+  color: var(--white20);
 }
 h6 {
   font-size: 10px;
@@ -108,6 +108,7 @@ button {
 nav {
   /*border: 2px dashed purple;*/
   padding:3px;
+  width: 100%;
   /*background-color: var(--white10);*/
 }
 .navbar {
@@ -116,6 +117,15 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+.navbar-left {
+  /*border: 1px solid greenyellow;*/
+  padding: 8px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
   align-items: center;
   gap: 50px;
 }
@@ -198,6 +208,20 @@ nav {
   width: 48px;
   gap: 6px;
 }
+.box-rxs {
+  /*border: 1px red solid;*/
+  border: 1.8px var(--white20) solid;
+  border-radius: 16px;
+  background-color: var(--white10);
+  padding: 9px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  justify-items: center;
+  min-height: 48px;
+  height:18px;
+  gap: 12px;
+}
 .row-start {
   /*border: 2px solid purple;*/
   display: flex;
@@ -218,3 +242,61 @@ nav {
   width: 100%;
   gap: 12px;
 }
+/*////////////////////////
+    4.6    Predictions
+////////////////////////*/
+
+.box-list {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-basis: 120px;
+  width: 240px;
+  box-shadow: grey;
+  position: relative;
+  gap: 6px;
+}
+
+.box-rxs h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+.box-rxs img {
+  width: 32px;
+  height: 32px;
+}
+.predictions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 240px;
+  margin-bottom: 9px;
+  gap: 6px;
+}
+.button-predictions{
+  border-radius: 16px;
+  border: 1.2px solid #FFFFFF33;
+  background: #FFFFFF1A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 90px;
+  height: 72px;
+}
+.row-between {
+  /*border: 2px solid red;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 100%;
+  gap: 12px;
+}
+
+

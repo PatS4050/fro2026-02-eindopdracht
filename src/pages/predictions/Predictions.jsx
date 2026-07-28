@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ForecastH from "../../components/forecast/ForecastH.jsx";
+import NavBarForcast from "../../components/navbar/NavBarForcast.jsx";
 
-function Predictions() {
+function Predictions({location}) {
     return (
         <>
+            <NavBarForcast location={location} />
             <main>
-                <h2>weersvoorspelling</h2>
-
+                <ForecastH location={location} />
             </main>
         </>
     );
