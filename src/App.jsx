@@ -42,7 +42,10 @@ function App() {
                     {/*<Route exact path="/" element={<Home />}/>*/}
                     {/*<Route path="/profile" element={ isAuth ? <Profile /> : <Navigate to="/" />}/>*/}
                     <Route path="/signin" element={ <SignIn />} />
-                    <Route path="/location" element={<Location />} />
+                    <Route path="/location" element={<Location
+                        location={location}
+                        setLocation={setLocation}
+                    />} />
                     <Route path="/background" element={<Background />} />
                     <Route path="/predictions" element={<Predictions location={location}/>} />
                     <Route path="/weatherchoice" element={<WeatherChoice />} />
