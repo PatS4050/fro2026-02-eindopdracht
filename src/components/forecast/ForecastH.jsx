@@ -55,6 +55,7 @@ function ForecastH1({location}) {
                 <button className='button-predictions' type="button" onClick={() => setPeriod(12)}>elke 12 uur</button>
             </span>
             <ul className='box-list'>
+                <li className='row-between'><h4>Tijd</h4><h4>Weer</h4><h4>Temp</h4><h4>Richting</h4><h4>Kracht</h4></li>
                 {forecastH1?.filter((_, index) => index % period === 0).slice(0,7).map((prediction, index) => (
                     <li className='box-rxs' key={prediction.dt}>
                         <h3>+{index * period}H</h3>
