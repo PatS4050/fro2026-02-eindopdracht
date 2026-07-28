@@ -11,9 +11,18 @@ function Location({location}) {
         <>
             <NavBarLocation location={location} />
             <main>
-                <p>Veld invoer locatie</p>
+                <form onSubmit={searchLocation}>
+                    <input className='box-rxs'
+                        value='Longyearbyen'
+                        onChange={(e)=>setSearchLocation(e.target.value)}
+                        placeholder="Longyearbyen"
+                    />
+                </form>
                 <p>switch alle locatie en favorieten</p>
-                <p>lijst locaties</p>
+                <ul className='box-list'>
+                    <li className='box-rxs'>lijst locaties</li>
+                </ul>
+
             </main>
 
         </>
