@@ -21,7 +21,6 @@ function Home({location}) {
 
             const response = await axios.get(weatherLink, {});
             setWeather(response.data);
-            console.log(response.data);
         } catch (e) {
             toggleError(true)
             console.error(e);

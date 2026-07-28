@@ -18,13 +18,11 @@ function ForecastH1({location}) {
         try {
             const response = await axios.get(forecastLink, {})
             // setForecastH1(response.data);
-            // console.log(response.data);
             setForecastH1(prev => [
                 ...prev,
                 ...response.data.data
                 ]);
             setNextLink(response.data.next);
-            console.log(response.data);
         } catch (e) {
             toggleError(true)
             console.error(e);

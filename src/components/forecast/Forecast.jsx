@@ -19,7 +19,6 @@ function Forecast({ location }) {
         try {
             const response = await axios.get(forecastLink, {})
             setForecastH(response.data);
-            console.log(response.data);
         } catch (e) {
             toggleError(true)
             console.error(e);

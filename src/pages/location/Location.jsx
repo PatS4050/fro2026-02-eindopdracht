@@ -7,6 +7,7 @@ function Location({location, setLocation, changeLocation}) {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
     const [searchLocation, setSearchLocation] = useState("");
     const [locationInfo, setLocationInfo] = useState([]);
+    const [locations, setLocations] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
@@ -18,7 +19,6 @@ function Location({location, setLocation, changeLocation}) {
         try {
             const response = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${searchLocation}&limit=1&appid=${apiKey}`);
             const city = response.data[0];
-            console.log(city);
             // sla de informatie van de plaats op in de state
             setLocationInfo(response.data);
             changeLocation(city.lat, city.lon, city.name);
