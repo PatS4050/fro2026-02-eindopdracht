@@ -16,7 +16,7 @@ function NavBarForcast({location, weather}) {
                 <ul className='navbar-left'>
                     <li>
                         <Link to="/">
-                    <button><img src={iconLeft} alt='icon left arrow'/></button>
+                    <button className='navbar'><img src={iconLeft} alt='icon left arrow'/></button>
                         </Link>
                     </li>
                     <li>

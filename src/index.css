@@ -100,6 +100,7 @@ button {
   border-radius: 40px;
   border: 1.2px solid #FFFFFF33;
   background: #FFFFFF1A;
+  color: var(--white80);
 }
 /*////////////////////////
     3.2   Navigation menu
@@ -240,6 +241,47 @@ nav {
   flex-shrink: 0;
   flex-grow: 1;
   width: 100%;
+  gap: 12px;
+}
+/*////////////////////////
+    4.3    Locations
+////////////////////////*/
+.location-card {
+  border: 1.8px var(--white20) solid;
+  border-radius: 16px;
+  background-color: var(--white10);
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  width: 240px;
+}
+button, .buttonNoStyle{
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:36px;
+  border-radius: 40px;
+  border: none;
+  background: none;
+  color: var(--white80);
+}
+.box-rxs-none {
+  /*border: 1px red solid;*/
+  border: none;
+  border-radius: 16px;
+  background-color: none;
+  padding: 9px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  justify-items: center;
+  min-height: 48px;
+  height:18px;
   gap: 12px;
 }
 /*////////////////////////

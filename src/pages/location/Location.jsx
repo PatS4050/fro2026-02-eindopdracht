@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import NavBarLocation from "../../components/navbar/NavBarLocation.jsx";
 import axios from "axios";
+import CurrentWeather from "../../components/forecast/CurrentWeather.jsx";
 
 function Location({location, setLocation, changeLocation}) {
 
@@ -49,14 +50,18 @@ function Location({location, setLocation, changeLocation}) {
                 <p>switch alle locatie en favorieten</p>
                 <ul className='box-list'>
                     {locationInfo.map((tomato) =>(
-                        <li className='box-rxs' key={tomato.lon}>
-                            <button onClick={()=>setLocation({
+                        <li className='location-card' key={tomato.lon}>
+                            <button className='buttonNoStyle' onClick={()=>setLocation({
                                 latitude: tomato.lat,
                                 longitude: tomato.lon,
                                 name: tomato.name,
                             })}>
                                 {tomato.name}
                         </button>
+                            <CurrentWeather
+                                latitude={tomato.lat}
+                                longitude={tomato.lon}
+                            />
                         </li>
                     ))}
                     <li className='box-rxs'>lijst locaties</li>
