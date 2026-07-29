@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import NavBarLocation from "../../components/navbar/NavBarLocation.jsx";
 import axios from "axios";
 import CurrentWeather from "../../components/forecast/CurrentWeather.jsx";
@@ -8,9 +8,18 @@ function Location({location, setLocation, changeLocation}) {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
     const [searchLocation, setSearchLocation] = useState("");
     // const [locationInfo, setLocationInfo] = useState([]);
-    const [locations, setLocations] = useState([]);
+    // const [locations, setLocations] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+    const [locations, setLocations] = useState(() => {
+        const savedLocations = localStorage.getItem("locations");
+
+        if (savedLocations) {
+            return JSON.parse(savedLocations);
+        }
+
+        return [];
+    });
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -20,7 +29,10 @@ function Location({location, setLocation, changeLocation}) {
         try {
             const response = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${searchLocation}&limit=1&appid=${apiKey}`);
             const city = response.data[0];
-            // sla de informatie van de plaats op in de state
+            if (!city) {
+                toggleError(true);
+                return;
+            }
             setLocations((prevLocations) => {
                 return [...prevLocations, city].slice(0, 12);
 
@@ -34,8 +46,11 @@ function Location({location, setLocation, changeLocation}) {
         console.error(e);
     } finally {
         toggleLoading(false);
-    }
-    }
+    }}
+
+    useEffect(() => {
+        localStorage.setItem("locations", JSON.stringify(locations));
+    }, [locations]);
 
 
     return (

@@ -73,7 +73,8 @@ function Forecast({ location }) {
                     />
                     <h3>{forecastH?.data[2]?.wind_speed}</h3>
 
-                </li><li className='box-xs'>
+                </li>
+                <li className='box-xs'>
                 <h3>+3H</h3>
                 <img
                     src={`https://openweathermap.org/img/wn/${forecastH?.data[3]?.weather[0]?.icon}@2x.png`}
