@@ -70,7 +70,7 @@ function ForecastH1({location}) {
                                 transition: "transform 0.2s ease"
                             }}
                         />
-                        <h3>💨 {prediction?.wind_speed} m/s</h3>
+                        <h3>{prediction?.wind_speed} m/s</h3>
                     </li>
                 ))}
             </ul>

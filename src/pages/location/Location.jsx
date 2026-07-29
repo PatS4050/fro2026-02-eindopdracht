@@ -65,7 +65,7 @@ function Location({location, setLocation, changeLocation}) {
                         placeholder="Longyearbyen"
                     />
                 </form>
-                <p>switch alle locatie en favorieten</p>
+                {/*<p>switch alle locatie en favorieten</p>*/}
                 <ul className='box-list'>
                     {locations.map((tomato) => (
                         <li className='location-card' key={tomato.lon}>
@@ -82,7 +82,6 @@ function Location({location, setLocation, changeLocation}) {
                             />
                         </li>
                     ))}
-                    <li className='box-rxs'>lijst locaties</li>
                 </ul>
 
             </main>

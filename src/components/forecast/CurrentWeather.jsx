@@ -51,7 +51,7 @@ function CurrentWeather({latitude, longitude}) {
                     }}
                 />
             <h3>
-                💨 {weather.wind.speed} m/s
+                {weather.wind.speed} m/s
             </h3>
         </div>
     );
