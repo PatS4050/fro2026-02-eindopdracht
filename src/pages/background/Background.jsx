@@ -7,6 +7,9 @@ function Background() {
         <>
             <main>
                 <h2>Achtergrond wijzigen</h2>
+                <p>Upload een image</p>
+                <p>6 voorbeeld plaatjes</p>
+                <button>Apply als background</button>
             </main>
         </>
     );
