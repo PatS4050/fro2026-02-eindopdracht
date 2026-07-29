@@ -16,6 +16,7 @@ import axios from "axios";
 function App() {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
     const [location, setLocation] = useState({ latitude: 78.22334, longitude: 16.64689, name: "Longyearbyen"}); // Longyearbyen
+    const [locations, setLocations] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
@@ -75,6 +76,8 @@ function App() {
                         location={location}
                         setLocation={setLocation}
                         changeLocation={changeLocation}
+                        locations={locations}
+                        setLocations={setLocations}
                     />} />
                     <Route path="/background" element={<Background />} />
                     <Route path="/predictions" element={<Predictions location={location}/>} />
