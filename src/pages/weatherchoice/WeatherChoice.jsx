@@ -1,12 +1,16 @@
 import React, {useState, useRef} from 'react';
+import axios from "axios";
 import { Link } from 'react-router-dom';
 import windRose from "../../assets/navigation/windroos/windRoosSimple.svg";
+import NavBarPage from "../../components/navbar/NavBarPage.jsx";
 
-function WheatherChoice() {
+function WheatherChoice({location}) {
 
     const [force, setForce] = useState(3)
     const [rotation, setRotation] = useState(0);
     const imageRef = useRef(null);
+    const [weatherGrid, setWeatherGrid] = useState([]);
+    const [loading, toggleLoading] = useState(false);
     const rotateRose = (event) => {
         const rect = imageRef.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
@@ -14,12 +18,63 @@ function WheatherChoice() {
         const x = event.clientX - centerX;
         const y = event.clientY - centerY;
         const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
-
         setRotation(angle);
     };
 
+    const getWeatherGrid = async () => {
+        try {
+            const radius = 5; // ongeveer 250 nautische mijl
+            const step = 0.5;  // grid afstand in graden
+
+            const points = [];
+
+            for (
+                let lat = location.latitude - radius;
+                lat <= location.latitude + radius;
+                lat += step
+            ) {
+                for (
+                    let lon = location.longitude - radius;
+                    lon <= location.longitude + radius;
+                    lon += step
+                ) {
+                    points.push({
+                        latitude: Number(lat.toFixed(2)),
+                        longitude: Number(lon.toFixed(2))
+                    });
+                }
+            }
+    const requests = points.map((point) =>
+        axios.get("https://api.open-meteo.com/v1/forecast", {
+            params: {
+                latitude: point.latitude,
+                longitude: point.longitude,
+                current: "wind_speed_10m,wind_direction_10m"
+            }
+        })
+    );
+    const responses = await Promise.all(requests);
+    const result = responses.map((response, index) => ({
+        latitude: points[index].latitude,
+        longitude: points[index].longitude,
+        windSpeed: response.data.current.wind_speed_10m,
+        windDirection: response.data.current.wind_direction_10m
+    }));
+
+    setWeatherGrid(result);
+    console.log(result);
+
+} catch (error) {
+    console.error("Fout bij ophalen weergegevens:", error);
+
+} finally {
+    toggleLoading(false);
+}};
+
+
     return (
         <>
+            <NavBarPage location={location} />
             <main>
                 <h2>Weer keuze</h2>
                 <p>Open-Meteo als API</p>
@@ -57,7 +112,10 @@ function WheatherChoice() {
                     </ul>
                 </div>
 
-                <button>zoek</button>
+                <button onClick={getWeatherGrid}
+                    disabled={loading}
+                    >
+                    {loading ? "Ophalen..." : "Zoek"}</button>
                 <p>lijst met plaatsen met windrichting en windkracht</p>
             </main>
 

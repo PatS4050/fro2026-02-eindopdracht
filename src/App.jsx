@@ -81,7 +81,7 @@ function App() {
                     />} />
                     <Route path="/background" element={<Background location={location}/>} />
                     <Route path="/predictions" element={<Predictions location={location}/>} />
-                    <Route path="/weatherchoice" element={<WeatherChoice />} />
+                    <Route path="/weatherchoice" element={<WeatherChoice location={location}/>} />
                 </Routes>
             </div>
 
