@@ -285,6 +285,15 @@ button, .buttonNoStyle{
   gap: 12px;
 }
 /*////////////////////////
+    4.4   Weather Type
+////////////////////////*/
+
+/*input[type="range"] {*/
+/*  width: 200px;*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*////////////////////////
     4.6    Predictions
 ////////////////////////*/
 

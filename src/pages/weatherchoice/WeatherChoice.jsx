@@ -1,10 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import windRose from "../../assets/navigation/windroos/windRoosSimple.svg";
 
 function WheatherChoice() {
 
     const [force, setForce] = useState(3)
+    const [rotation, setRotation] = useState(0);
+    const imageRef = useRef(null);
+    const rotateRose = (event) => {
+        const rect = imageRef.current.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const x = event.clientX - centerX;
+        const y = event.clientY - centerY;
+        const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+
+        setRotation(angle);
+    };
 
     return (
         <>
@@ -12,19 +24,22 @@ function WheatherChoice() {
                 <h2>Weer keuze</h2>
                 <p>Open-Meteo als API</p>
                 <p>Haal grid op met radius ca 250mijl rond huidige locatie</p>
-                <p>kies windrichting</p>
-                <p>kies windkracht in m/2</p>
+                <h4>kies windrichting</h4>
                 <div className="basis">
                     <img
+                        ref={imageRef}
                         src={windRose}
-                        alt='windroos'
+                        alt="windroos"
+                        onClick={rotateRose}
                         style={{
-                            transform: `rotate( 15deg)`,
-                            transition: "transform 0.6s ease"
+                            width: "250px",
+                            cursor: "grab",
+                            transform: `rotate(${rotation}deg)`,
+                            transition: "transform 0.2s ease",
                         }}
                     />
                     <ul className="basis">
-                        <li className="row-center"><h4>FORCE</h4></li>
+                        <li className="row-center"><h4>Kies windkracht</h4></li>
                         <li className="row-center">
                             <input
                                 type="range"
