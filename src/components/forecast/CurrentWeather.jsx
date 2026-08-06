@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import './CurrentWeather.css';
 import windRose from "../../assets/navigation/windroos/windRoosVol.svg";
+import {msToBft} from "../utils/windMsToBft.js";
 
 function CurrentWeather({latitude, longitude}) {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
@@ -51,7 +52,7 @@ function CurrentWeather({latitude, longitude}) {
                     }}
                 />
             <h3>
-                {weather.wind.speed} m/s
+                {msToBft(weather.wind.speed)} Bft
             </h3>
         </div>
     );

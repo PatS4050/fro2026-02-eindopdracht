@@ -21,9 +21,19 @@ function WheatherChoice({location}) {
         const x = event.clientX - centerX;
         const y = event.clientY - centerY;
         let angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+        if (angle < 0) {
+            angle += 360;
+        }
         const index = Math.round(angle / 22.5) % 16;
         setRotation(index * 22.5);
         setDirection(windDirections[index]);
+
+            console.log(
+                "gekozen richting:",
+                windDirections[index],
+                "hoek:",
+                angle
+            );
     };
 
     const getWeatherGrid = async () => {
@@ -56,7 +66,8 @@ function WheatherChoice({location}) {
             params: {
                 latitude: point.latitude,
                 longitude: point.longitude,
-                current: "wind_speed_10m,wind_direction_10m"
+                current: "wind_speed_10m,wind_direction_10m",
+                wind_speed_unit: "ms"
             }
         })
     );
@@ -69,7 +80,6 @@ function WheatherChoice({location}) {
     }));
 
     setWeatherGrid(result);
-    console.log("volledig grid",result);
     return result;
 
 } catch (error) {
@@ -118,27 +128,6 @@ function WheatherChoice({location}) {
         const index = Math.round(degrees / 22.5) % 16;
         return windDirections[index];
     }
-    // const filterWeatherGrid = () => {
-    //     const [minSpeed, maxSpeed] = bftToMs[force];
-    //
-    //     const filtered = weatherGrid.filter((point) => {
-    //         const pointDirection = degreesToDirection(point.windDirection);
-    //
-    //         return (
-    //             point.windSpeed >= minSpeed &&
-    //             point.windSpeed <= maxSpeed &&
-    //             pointDirection === direction
-    //         );
-    //     });
-    //
-    //     console.log("Gefilterde plaatsen:", filtered);
-    //
-    //     return filtered;
-    // };
-
-    const filtered = weatherGrid.filter(point =>
-        degreesToDirection(point.windDirection) === direction
-    );
 
     const searchWeather = async () => {
         const grid = await getWeatherGrid();
@@ -151,18 +140,22 @@ function WheatherChoice({location}) {
             );
         });
         setFilteredMeteo(filtered);
-        console.log("gefilterde plaatsen", filtered);
     };
 
-
-
+    const msToBft = (speed) => {
+        for (const [bft, range] of Object.entries(bftToMs)) {
+            if (speed >= range[0] && speed <= range[1]) {
+                return Number(bft);
+            }
+        }
+        return 12;
+    };
+console.log("filtered", filteredMeteo )
     return (
         <>
             <NavBarPage location={location} />
             <main>
-                <h2>Weer keuze</h2>
-                <p>Open-Meteo als API</p>
-                <p>Haal grid op met radius ca 250mijl rond huidige locatie</p>
+                <h2>Keuze weer</h2>
                 <h4>kies windrichting</h4>
                 <div className="basis">
                     <img
@@ -200,7 +193,15 @@ function WheatherChoice({location}) {
                     disabled={loading}
                     >
                     {loading ? "Ophalen..." : "Zoek"}</button>
-                <p>lijst met plaatsen met windrichting en windkracht</p>
+                <h4>lijst met plaatsen met windrichting en windkracht</h4>
+                <ul>
+                    {filteredMeteo.map((point) => (
+                        <li key={`${point.latitude}-${point.longitude}`}>
+                            {point.latitude} - {point.longitude} -
+                            Wind: {msToBft(point.windSpeed)} Bft - {degreesToDirection(point.windDirection)}
+                        </li>
+                    ))}
+                </ul>
             </main>
 
         </>

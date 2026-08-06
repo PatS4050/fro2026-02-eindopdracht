@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './ForecastH.css'
 import windRose from "../../assets/navigation/windroos/windRoosVol.svg";
+import {msToBft} from "../utils/windMsToBft.js";
 
 function ForecastH1({location}) {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
@@ -70,7 +71,7 @@ function ForecastH1({location}) {
                                 transition: "transform 0.2s ease"
                             }}
                         />
-                        <h3>{prediction?.wind_speed} m/s</h3>
+                        <h3>{msToBft(prediction?.wind_speed)} Bft</h3>
                     </li>
                 ))}
             </ul>

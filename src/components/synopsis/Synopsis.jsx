@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import './Synopsis.css'
 import windRose from '../../assets/navigation/windroos/windRoosSimple.svg'
+import {msToBft} from "../utils/windMsToBft.js";
 
 function Synopsis({location, weather}) {
 
@@ -27,7 +28,7 @@ function Synopsis({location, weather}) {
             />
             <ul className="basis">
                 <li className="row-center"><h4>DIRECTION</h4><h4>FORCE</h4></li>
-                <li><p> {weather?.wind?.deg} º | {weather?.wind?.speed} m/s</p></li>
+                <li><p> {weather?.wind?.deg} º | {msToBft(weather?.wind?.speed)} Bft</p></li>
                 <li><h4>{weather?.weather?.[0]?.description}</h4></li>
             </ul>
         </div>
