@@ -1,6 +1,5 @@
 import React, {useState, useRef} from 'react';
 import axios from "axios";
-import { Link } from 'react-router-dom';
 import windRose from "../../assets/navigation/windroos/windRoosSimple.svg";
 import NavBarPage from "../../components/navbar/NavBarPage.jsx";
 
@@ -10,22 +9,30 @@ function WheatherChoice({location}) {
     const [rotation, setRotation] = useState(0);
     const imageRef = useRef(null);
     const [weatherGrid, setWeatherGrid] = useState([]);
+    const [error, setError] = useState(false)
     const [loading, toggleLoading] = useState(false);
+    const [filteredMeteo, setFilteredMeteo] = useState([]);
+    const [direction, setDirection] = useState("N");
+
     const rotateRose = (event) => {
         const rect = imageRef.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         const x = event.clientX - centerX;
         const y = event.clientY - centerY;
-        const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
-        setRotation(angle);
+        let angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+        const index = Math.round(angle / 22.5) % 16;
+        setRotation(index * 22.5);
+        setDirection(windDirections[index]);
     };
 
     const getWeatherGrid = async () => {
+        toggleLoading (true);
+        setError (false);
         try {
             const radius = 5; // ongeveer 250 nautische mijl
-            const step = 0.5;  // grid afstand in graden
-
+            // const step = 0.5;  // grid afstand in graden
+            const step = 1;  // grid afstand in graden
             const points = [];
 
             for (
@@ -62,7 +69,8 @@ function WheatherChoice({location}) {
     }));
 
     setWeatherGrid(result);
-    console.log(result);
+    console.log("volledig grid",result);
+    return result;
 
 } catch (error) {
     console.error("Fout bij ophalen weergegevens:", error);
@@ -70,6 +78,82 @@ function WheatherChoice({location}) {
 } finally {
     toggleLoading(false);
 }};
+
+    const bftToMs = {
+        0: [0, 0.2],
+        1: [0.3, 1.5],
+        2: [1.6, 3.3],
+        3: [3.4, 5.4],
+        4: [5.5, 7.9],
+        5: [8.0, 10.7],
+        6: [10.8, 13.8],
+        7: [13.9, 17.1],
+        8: [17.2, 20.7],
+        9: [20.8, 24.4],
+        10: [24.5, 28.4],
+        11: [28.5, 32.6],
+        12: [32.7, 50]
+    };
+
+    const windDirections = [
+        "N",
+        "NNO",
+        "NO",
+        "ONO",
+        "O",
+        "OZO",
+        "ZO",
+        "ZZO",
+        "Z",
+        "ZZW",
+        "ZW",
+        "WZW",
+        "W",
+        "WNW",
+        "NW",
+        "NNW"
+    ];
+
+    function degreesToDirection(degrees) {
+        const index = Math.round(degrees / 22.5) % 16;
+        return windDirections[index];
+    }
+    // const filterWeatherGrid = () => {
+    //     const [minSpeed, maxSpeed] = bftToMs[force];
+    //
+    //     const filtered = weatherGrid.filter((point) => {
+    //         const pointDirection = degreesToDirection(point.windDirection);
+    //
+    //         return (
+    //             point.windSpeed >= minSpeed &&
+    //             point.windSpeed <= maxSpeed &&
+    //             pointDirection === direction
+    //         );
+    //     });
+    //
+    //     console.log("Gefilterde plaatsen:", filtered);
+    //
+    //     return filtered;
+    // };
+
+    const filtered = weatherGrid.filter(point =>
+        degreesToDirection(point.windDirection) === direction
+    );
+
+    const searchWeather = async () => {
+        const grid = await getWeatherGrid();
+        const [minSpeed, maxSpeed] = bftToMs[force];
+        const filtered = grid.filter((point) => {
+            return (
+                point.windSpeed >= minSpeed &&
+                point.windSpeed <= maxSpeed &&
+                degreesToDirection(point.windDirection) === direction
+            );
+        });
+        setFilteredMeteo(filtered);
+        console.log("gefilterde plaatsen", filtered);
+    };
+
 
 
     return (
@@ -112,7 +196,7 @@ function WheatherChoice({location}) {
                     </ul>
                 </div>
 
-                <button onClick={getWeatherGrid}
+                <button onClick={searchWeather}
                     disabled={loading}
                     >
                     {loading ? "Ophalen..." : "Zoek"}</button>
