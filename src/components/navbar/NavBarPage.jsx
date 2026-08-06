@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import './NavBarLocation.css'
+import './NavBarPage.css'
 import locationImage from "../../assets/navigation/navIconLoc.svg";
 import iconLeft from "../../assets/navigation/iconArrowLeft.svg"
 
@@ -18,7 +18,6 @@ function NavBarLocation({location}) {
                         </Link>
                     </li>
                     <li>
-                        <h5>Locaties</h5>
                        <span>
                            <img src={locationImage} alt='location pointer'/>
                            <p>{location?.name}</p>

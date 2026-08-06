@@ -79,7 +79,7 @@ function App() {
                         locations={locations}
                         setLocations={setLocations}
                     />} />
-                    <Route path="/background" element={<Background />} />
+                    <Route path="/background" element={<Background location={location}/>} />
                     <Route path="/predictions" element={<Predictions location={location}/>} />
                     <Route path="/weatherchoice" element={<WeatherChoice />} />
                 </Routes>
