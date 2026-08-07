@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
-import {useState} from 'react';
-import { Routes, Route } from 'react-router-dom';
+import {useState, useContext, useEffect} from 'react';
+import {Routes, Route, Navigate} from 'react-router-dom';
 import ReactDOM from "react-dom/client";
 import './App.css'
 import Home from "./pages/home/Home.jsx";
@@ -10,6 +9,7 @@ import Background from "./pages/background/Background.jsx";
 import Predictions from "./pages/predictions/Predictions.jsx";
 import Location from "./pages/location/Location.jsx";
 import axios from "axios";
+import { AuthContext } from "./components/authenticate/AuthenticateContext.jsx";
 
 
 
@@ -19,6 +19,7 @@ function App() {
     const [locations, setLocations] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+    const { isAuth } = useContext(AuthContext);
 
     const changeLocation = (lat, lon, name) => {
         setLocation({
@@ -68,7 +69,8 @@ function App() {
         <>
             <div className="content">
                 <Routes>
-                    <Route path="/" element={ <Home location={location}/>} />
+                    {/*<Route path="/" element={ <Home location={location}/>} />*/}
+                    <Route exact path="/" element={ <Home location={location}/>} />
                     {/*<Route exact path="/" element={<Home />}/>*/}
                     {/*<Route path="/profile" element={ isAuth ? <Profile /> : <Navigate to="/" />}/>*/}
                     <Route path="/signin" element={ <SignIn location={location}/>} />
@@ -79,7 +81,7 @@ function App() {
                         locations={locations}
                         setLocations={setLocations}
                     />} />
-                    <Route path="/background" element={<Background location={location}/>} />
+                    <Route path="/background" element={isAuth ?<Background />: <Navigate to="/" />}/>
                     <Route path="/predictions" element={<Predictions location={location}/>} />
                     <Route path="/weatherchoice" element={<WeatherChoice location={location}/>} />
                 </Routes>

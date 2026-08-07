@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
-import { Link } from 'react-router-dom';
 import NavBarPage from "../../components/navbar/NavBarPage.jsx";
-import {AuthContext} from "../../components/authenticate/AuthenticateContext.jsx";
+import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from "../../components/authenticate/AuthenticateContext.jsx";
 
-function SignIn() {
+function SignIn({location}) {
     // code Arthur
     // async function login() {
     //     try {
@@ -23,7 +23,8 @@ function SignIn() {
     //         console.error("Er ging iets mis bij het inloggen", error);
     //     }
     // }
-    const {isAuth} = useContext(AuthContext);
+    const { isAuth, login, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -33,8 +34,18 @@ function SignIn() {
                 <p>switch login of registreren</p>
                 <p>veld email</p>
                 <p>veld wachtwoord</p>
-                <p> fortgot password? </p>
-                <button>Sign In</button>
+                <p> forgot password? </p>
+                <button type="button" onClick={login}>Sign In</button>
+
+                {/*{isAuth ?*/}
+                {/*<button*/}
+                {/*    type="button"*/}
+                {/*    onClick={() => navigate('/signin')}*/}
+                {/*>*/}
+                {/*    Log in*/}
+                {/*</button>*/}
+                {/*}*/}
+
                 {/*bij registreren wordt id, naam en ww aangemaakt POST, registerForm*/}
                 {/*bij login wordt gecontroleerd of je bestaat GET loginForm*/}
                 {/*krijg je een token terug*/}
