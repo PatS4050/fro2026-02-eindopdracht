@@ -71,7 +71,7 @@ function App() {
                     <Route path="/" element={ <Home location={location}/>} />
                     {/*<Route exact path="/" element={<Home />}/>*/}
                     {/*<Route path="/profile" element={ isAuth ? <Profile /> : <Navigate to="/" />}/>*/}
-                    <Route path="/signin" element={ <SignIn />} />
+                    <Route path="/signin" element={ <SignIn location={location}/>} />
                     <Route path="/location" element={<Location
                         location={location}
                         setLocation={setLocation}
