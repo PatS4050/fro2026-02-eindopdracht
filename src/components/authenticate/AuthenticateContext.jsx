@@ -24,25 +24,24 @@ function AuthContextProvider( {children} ) {
     }
 
     // code Arthur
-// async function login() {
-//     try {
-//         const loginResponse = await axios.get(
-//             {linkNoviBackEnd},
-//     }
-//             {
-//                 email: "test@novi.nl",
-//                 password: "test",
-//         },
-//             {
-//                 headers: {
-//                     "novi-education-project-id": ${PROJECT_ID}
-//                 }
-//             }
-//         );
-//     } catch (error) {
-//         console.error("Er ging iets mis bij het inloggen", error);
-//     }
-// }
+async function login() {
+    try {
+        const loginResponse = await axios.post(
+            linkNoviBackEnd,
+            {
+                email: "test@novi.nl",
+                password: "test",
+        },
+            {
+                headers: {
+                    "novi-education-project-id": PROJECT_ID
+                },
+            }
+        );
+    } catch (error) {
+        console.error("Er ging iets mis bij het inloggen", error);
+    }
+}
 
     function logout() {
         console.log('Gebruiker is uitgelogd!');
