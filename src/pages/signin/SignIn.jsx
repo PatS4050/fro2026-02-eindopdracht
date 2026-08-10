@@ -4,31 +4,17 @@ import {useNavigate, Link, useLocation} from 'react-router-dom';
 import { AuthContext } from "../../components/authenticate/AuthenticateContext.jsx";
 
 function SignIn({location}) {
-    // code Arthur
-    // async function login() {
-    //     try {
-    //         const loginResponse = await axios.get(
-    //             `https://novi-backend-api-wgsgz.ondigitalocean.app/api/login`,
-    //             {
-    //                 headers: {
-    //                     "novi-education-project-id": "0aa01fc3-b0dd-4ad7-9f9e-82b0c9688601",
-    //                 },
-    //             },
-    //             {
-    //                 email: "test@novi.nl",
-    //                 password: "test",
-    //             },
-    //         );
-    //     } catch (error) {
-    //         console.error("Er ging iets mis bij het inloggen", error);
-    //     }
-    // }
+
     const { isAuth, login, logout } = useContext(AuthContext);
     const navigate = useNavigate();
     const routerPage = useLocation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLogin, setIsLogin] = useState(true)
+    const [isLogin, setIsLogin] = useState(true);
+    const linkNoviBackEnd = "https://novi-backend-api-wgsgz.ondigitalocean.app/"
+    //'novi-education-project-id': 'c28ee213-3929-411e-8859-3b773da0246e'
+
+
 
     function handleLogin(event) {
         event.preventDefault();
