@@ -5,14 +5,15 @@ import { AuthContext } from "../../components/authenticate/AuthenticateContext.j
 
 function SignIn({location}) {
 
-    const { isAuth, login, logout } = useContext(AuthContext);
+    const { isAuth, login, logout, register } = useContext(AuthContext);
     const navigate = useNavigate();
     const routerPage = useLocation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLogin, setIsLogin] = useState(true);
-    const [error, toggleError] = useState(false)
-    const linkNoviBackEnd = "https://novi-backend-api-wgsgz.ondigitalocean.app/"
+    const [error, toggleError] = useState(false);
+
+    // const linkNoviBackEnd = "https://novi-backend-api-wgsgz.ondigitalocean.app/"
     //'novi-education-project-id': 'c28ee213-3929-411e-8859-3b773da0246e'
 
 
@@ -26,10 +27,11 @@ function SignIn({location}) {
             navigate(destination);
             console.log("Inloggen", email, password);
         } else {
+            register(email, password);
+            const destination = routerPage.state?.from?.pathname || "/";
+            navigate(destination);
             console.log("registreren", email, password)
         }
-
-
     }
 
     return (
