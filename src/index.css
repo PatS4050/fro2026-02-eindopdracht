@@ -278,6 +278,58 @@ nav {
   flex-basis: 45px;
   width: 240px;
 }
+.auth-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch-button {
+  position: relative;
+  width: 240px;
+  height: 45px;
+  padding: 3px;
+  border-radius: 16px;
+  border: 1.2px solid #FFFFFF33;
+  background: #FFFFFF1A;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.switch-option{
+  position: relative;
+  z-index: 2;
+  width: 45%;
+  text-align: center;
+  color: #FFFFFF80;
+  transition: color 0.25s ease;
+}
+.switch-button.login .login-option, .switch-button.register .register-option {
+  color: #FFFFFFCC;
+}
+.switch-circle {
+  position: absolute;
+  z-index: 1;
+  left: 4px;
+  left: 4px;
+  height: 36px;
+  width: calc(50% - 6px);
+  border-radius: 12px;
+  background: #FFFFFF33;
+  border: 1px solid #FFFFFF44;
+  transition: transform 0.2s ease;
+}
+
+.switch-button.login .switch-circle {
+  transform: translateX(0);
+}
+
+.switch-button.register .switch-circle {
+  transform: translateX(100%);
+} ΩΩ
 /*////////////////////////
     4.3    Locations
 ////////////////////////*/

@@ -28,17 +28,21 @@ function SignIn({location}) {
     const routerPage = useLocation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLogin, setIsLogin] = useState(true)
 
     function handleLogin(event) {
         event.preventDefault();
-        login();
 
-        const destination = routerPage.state?.from?.pathname || "/";
+        if (isLogin) {
+            login();
+            const destination = routerPage.state?.from?.pathname || "/";
+            navigate(destination);
+            console.log("Inloggen", email, password);
+        } else {
+            console.log("registreren", email, password)
+        }
 
-        navigate(destination);
 
-        console.log("Email:", email);
-        console.log("Wachtwoord:", password);
     }
 
     return (
@@ -46,7 +50,17 @@ function SignIn({location}) {
             <NavBarPage location={location}/>
             <main>
                 <h2>Login</h2>
-                <p>switch login of registreren</p>
+                <div className="auth-switch">
+                    <button
+                        type="button"
+                        className={`switch-button ${isLogin ? "login" : "register"}`}
+                        onClick={() => setIsLogin(!isLogin)}
+                    >
+                        <span className="switch-option login-option">Login</span>
+                        <span className="switch-option register-option">Registreren</span>
+                        <span className="switch-circle"></span>
+                    </button>
+                </div>
                 <form className="basis" onSubmit={handleLogin}>
                 <input className='signin'
                         id="email"
@@ -73,7 +87,6 @@ function SignIn({location}) {
                     Log out
                 </button>
             </main>
-
         </>
     );
 }
