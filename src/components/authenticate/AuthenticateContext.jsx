@@ -42,7 +42,11 @@ async function login(email, password) {
             }
         );
         console.log("er is ingelogd", loginResponse.data)
-        toggleIsAuth(true)
+        const token = loginResponse.data.token;
+        localStorage.setItem("token", token);
+        SetToken(token);
+        toggleIsAuth(true);
+        return true;
 
     } catch (error) {
         console.error("Er ging iets mis bij het inloggen", error);
