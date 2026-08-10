@@ -10,6 +10,7 @@ import Predictions from "./pages/predictions/Predictions.jsx";
 import Location from "./pages/location/Location.jsx";
 import axios from "axios";
 import { AuthContext } from "./components/authenticate/AuthenticateContext.jsx";
+import ProtectedRoute from "./components/authenticate/ProtectedRoute.jsx";
 
 
 
@@ -70,25 +71,45 @@ function App() {
             <div className="content">
                 <Routes>
                     {/*<Route path="/" element={ <Home location={location}/>} />*/}
-                    <Route exact path="/" element={ <Home location={location}/>} />
+                    <Route exact path="/" element={<Home location={location}/>}/>
                     {/*<Route exact path="/" element={<Home />}/>*/}
                     {/*<Route path="/profile" element={ isAuth ? <Profile /> : <Navigate to="/" />}/>*/}
-                    <Route path="/signin" element={ <SignIn location={location}/>} />
-                    <Route path="/location" element={<Location
-                        location={location}
-                        setLocation={setLocation}
-                        changeLocation={changeLocation}
-                        locations={locations}
-                        setLocations={setLocations}
-                    />} />
-                    <Route path="/background" element={isAuth ?<Background />: <Navigate to="/" />}/>
-                    <Route path="/predictions" element={<Predictions location={location}/>} />
-                    <Route path="/weatherchoice" element={<WeatherChoice location={location}/>} />
+                    <Route path="/signin" element={<SignIn location={location}/>}/>
+                    <Route path="/location" element={
+                        <ProtectedRoute>
+                            <Location
+                                location={location}
+                                setLocation={setLocation}
+                                changeLocation={changeLocation}
+                                locations={locations}
+                                setLocations={setLocations}
+                            />
+                        </ProtectedRoute>
+                    }
+                    />
+                    <Route path="/background" element={
+                        <ProtectedRoute>
+                            <Background location={location}/>
+                        </ProtectedRoute>
+                    }
+                    />
+                    <Route path="/predictions" element={
+                        <ProtectedRoute>
+                            <Predictions location={location}/>
+                        </ProtectedRoute>
+                    }
+                    />
+                    <Route path="/weatherchoice" element={
+                        <ProtectedRoute>
+                            <WeatherChoice location={location}/>
+                        </ProtectedRoute>
+                    }
+                    />
                 </Routes>
             </div>
 
         </>
-    )
+    );
 }
 
 export default App

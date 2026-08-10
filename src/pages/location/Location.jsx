@@ -8,7 +8,6 @@ function Location({location, setLocation, changeLocation}) {
     const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY;
     const [searchLocation, setSearchLocation] = useState("");
     // const [locationInfo, setLocationInfo] = useState([]);
-    // const [locations, setLocations] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const [locations, setLocations] = useState(() => {

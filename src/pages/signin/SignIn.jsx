@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import NavBarPage from "../../components/navbar/NavBarPage.jsx";
-import { useNavigate, Link } from 'react-router-dom';
+import {useNavigate, Link, useLocation} from 'react-router-dom';
 import { AuthContext } from "../../components/authenticate/AuthenticateContext.jsx";
 
 function SignIn({location}) {
@@ -25,6 +25,15 @@ function SignIn({location}) {
     // }
     const { isAuth, login, logout } = useContext(AuthContext);
     const navigate = useNavigate();
+    const routerPage = useLocation();
+
+    function handleLogin() {
+        login();
+
+        const destination = routerPage.state?.from?.pathname || "/";
+
+        navigate(destination);
+    }
 
     return (
         <>
@@ -35,7 +44,7 @@ function SignIn({location}) {
                 <p>veld email</p>
                 <p>veld wachtwoord</p>
                 <p> forgot password? </p>
-                <button type="button" onClick={login}>Sign In</button>
+                <button type="button" onClick={handleLogin}>Sign In</button>
 
                 {/*{isAuth ?*/}
                 {/*<button*/}
