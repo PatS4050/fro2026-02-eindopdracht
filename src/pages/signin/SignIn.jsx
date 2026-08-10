@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import NavBarPage from "../../components/navbar/NavBarPage.jsx";
 import {useNavigate, Link, useLocation} from 'react-router-dom';
 import { AuthContext } from "../../components/authenticate/AuthenticateContext.jsx";
@@ -26,13 +26,19 @@ function SignIn({location}) {
     const { isAuth, login, logout } = useContext(AuthContext);
     const navigate = useNavigate();
     const routerPage = useLocation();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    function handleLogin() {
+    function handleLogin(event) {
+        event.preventDefault();
         login();
 
         const destination = routerPage.state?.from?.pathname || "/";
 
         navigate(destination);
+
+        console.log("Email:", email);
+        console.log("Wachtwoord:", password);
     }
 
     return (
@@ -41,26 +47,31 @@ function SignIn({location}) {
             <main>
                 <h2>Login</h2>
                 <p>switch login of registreren</p>
-                <p>veld email</p>
-                <p>veld wachtwoord</p>
-                <p> forgot password? </p>
-                <button type="button" onClick={handleLogin}>Sign In</button>
+                <form className="basis" onSubmit={handleLogin}>
+                <input className='signin'
+                        id="email"
+                       type="email"
+                       value={email}
+                       onChange={(event) => setEmail(event.target.value)}
+                       placeholder="Vul je email in" />
+                <input className='signin'
+                    id="password"
+                       type="password"
+                       value={password}
+                       onChange={(event) => setPassword(event.target.value)}
+                       placeholder="Vul je wachtwoord in" />
+                <button className='signin-button' type="submit">Sign In</button>
+                </form>
 
-                {/*{isAuth ?*/}
-                {/*<button*/}
-                {/*    type="button"*/}
-                {/*    onClick={() => navigate('/signin')}*/}
-                {/*>*/}
-                {/*    Log in*/}
-                {/*</button>*/}
-                {/*}*/}
 
                 {/*bij registreren wordt id, naam en ww aangemaakt POST, registerForm*/}
                 {/*bij login wordt gecontroleerd of je bestaat GET loginForm*/}
                 {/*krijg je een token terug*/}
                 {/*Token in local storage opslaan (onveilig) en isAuth = true*/}
                 <h4>By continuing you agree to our Terms & Privacy Policy</h4>
-                <p>uitloggen</p>
+                <button className='signout-button' type="button" onClick={logout}>
+                    Log out
+                </button>
             </main>
 
         </>
