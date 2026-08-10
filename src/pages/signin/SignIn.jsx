@@ -11,6 +11,7 @@ function SignIn({location}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLogin, setIsLogin] = useState(true);
+    const [error, toggleError] = useState(false)
     const linkNoviBackEnd = "https://novi-backend-api-wgsgz.ondigitalocean.app/"
     //'novi-education-project-id': 'c28ee213-3929-411e-8859-3b773da0246e'
 
@@ -20,7 +21,7 @@ function SignIn({location}) {
         event.preventDefault();
 
         if (isLogin) {
-            login();
+            login(email, password);
             const destination = routerPage.state?.from?.pathname || "/";
             navigate(destination);
             console.log("Inloggen", email, password);
