@@ -15,18 +15,8 @@ function AuthContextProvider( {children} ) {
     const linkNoviLogin = "https://novi-backend-api-wgsgz.ondigitalocean.app/api/login"
     const linkNoviRegister = "https://novi-backend-api-wgsgz.ondigitalocean.app/api/users"
     const PROJECT_ID = import.meta.env.VITE_NOVI_PROJECT_ID;
-    // const isAuth = Boolean(token)
 
-
-    // function login() {
-    //     console.log('Gebruiker is ingelogd!');
-    //     toggleIsAuth(true);
-    // }
-
-    // code Arthur
 async function login(email, password) {
-    console.log("LOGIN DATA:", email, password);
-    console.log("PROJECT ID:", PROJECT_ID);
 
     try {
         const loginResponse = await axios.post(
@@ -41,7 +31,6 @@ async function login(email, password) {
                 },
             }
         );
-        console.log("er is ingelogd", loginResponse.data)
         const token = loginResponse.data.token;
         localStorage.setItem("token", token);
         SetToken(token);
@@ -54,8 +43,6 @@ async function login(email, password) {
 }
 
     async function register(email, password) {
-        console.log("LOGIN DATA:", email, password);
-        console.log("PROJECT ID:", PROJECT_ID);
 
         try {
             const registerResponse = await axios.post(
@@ -70,7 +57,6 @@ async function login(email, password) {
                     },
                 }
             );
-            console.log("gebruiker geregistreerd", registerResponse.data)
             toggleIsAuth(true)
 
         } catch (error) {
@@ -79,7 +65,8 @@ async function login(email, password) {
     }
 
     function logout() {
-        console.log('Gebruiker is uitgelogd!');
+        localStorage.removeItem("token");
+        SetToken(null);
         toggleIsAuth(false);
         navigate('/');
     }

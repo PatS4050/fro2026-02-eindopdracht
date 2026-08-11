@@ -28,12 +28,12 @@ function WheatherChoice({location}) {
         setRotation(index * 22.5);
         setDirection(windDirections[index]);
 
-            console.log(
-                "gekozen richting:",
-                windDirections[index],
-                "hoek:",
-                angle
-            );
+            // console.log(
+            //     "gekozen richting:",
+            //     windDirections[index],
+            //     "hoek:",
+            //     angle
+            // );
     };
 
     const getWeatherGrid = async () => {
@@ -150,6 +150,8 @@ function WheatherChoice({location}) {
         }
         return 12;
     };
+
+
 console.log("filtered", filteredMeteo )
     return (
         <>

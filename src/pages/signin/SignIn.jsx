@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import NavBarPage from "../../components/navbar/NavBarPage.jsx";
 import {useNavigate, Link, useLocation} from 'react-router-dom';
 import { AuthContext } from "../../components/authenticate/AuthenticateContext.jsx";
+import axios from "axios";
 
 function SignIn({location}) {
 
@@ -13,18 +14,16 @@ function SignIn({location}) {
     const [isLogin, setIsLogin] = useState(true);
     const [error, toggleError] = useState(false);
 
-    // const linkNoviBackEnd = "https://novi-backend-api-wgsgz.ondigitalocean.app/"
-    //'novi-education-project-id': 'c28ee213-3929-411e-8859-3b773da0246e'
 
-
-
-    function handleLogin(event) {
+    async function handleLogin(event) {
         event.preventDefault();
 
         if (isLogin) {
-            login(email, password);
+            const goodLogin = await login(email, password);
+            if (goodLogin) {
             const destination = routerPage.state?.from?.pathname || "/";
             navigate(destination);
+            }
             console.log("Inloggen", email, password);
         } else {
             register(email, password);
