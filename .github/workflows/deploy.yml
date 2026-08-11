@@ -16,11 +16,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Create production environment
+        run: |
+            echo "VITE_OPENWEATHER_API_KEY=${{ secrets.VITE_OPENWEATHER_API_KEY }}" >> .env
+            echo "VITE_NOVI_PROJECT_ID=${{ secrets.VITE_NOVI_PROJECT_ID }}" >> .env
 
       - name: Build Vite application
         run: npm run build
