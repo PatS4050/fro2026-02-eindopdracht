@@ -24,12 +24,10 @@ function SignIn({location}) {
             const destination = routerPage.state?.from?.pathname || "/";
             navigate(destination);
             }
-            console.log("Inloggen", email, password);
         } else {
             register(email, password);
             const destination = routerPage.state?.from?.pathname || "/";
             navigate(destination);
-            console.log("registreren", email, password)
         }
     }
 
@@ -64,12 +62,6 @@ function SignIn({location}) {
                        placeholder="Vul je wachtwoord in" />
                 <button className='signin-button' type="submit">Sign In</button>
                 </form>
-
-
-                {/*bij registreren wordt id, naam en ww aangemaakt POST, registerForm*/}
-                {/*bij login wordt gecontroleerd of je bestaat GET loginForm*/}
-                {/*krijg je een token terug*/}
-                {/*Token in local storage opslaan (onveilig) en isAuth = true*/}
                 <h4>By continuing you agree to our Terms & Privacy Policy</h4>
                 <button className='signout-button' type="button" onClick={logout}>
                     Log out
